@@ -1,0 +1,6 @@
+- name: install desktop environment
+  pacman: name={{ item }} state=present
+  with_items:
+    - xfce4
+    - xfce4-goodies
+  become: yes

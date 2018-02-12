@@ -183,3 +183,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
+# startx at login
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
