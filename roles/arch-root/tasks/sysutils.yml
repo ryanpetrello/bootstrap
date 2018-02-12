@@ -1,0 +1,19 @@
+---
+- name: install common system utils
+  pacman: name={{ item }} state=present
+  with_items:
+    - curl
+    - rsync
+    - ntp
+    - wget
+    - openssh
+    - net-tools
+
+- name: enable ntp
+  service: name=ntpd state=started enabled=yes
+
+- name: create /etc/sysctl.d configuration folder
+  file: path=/etc/sysctl.d/ state=directory mode=755
+
+- name: create /etc/sysctl.d configuration file
+  copy: content="" dest=/etc/sysctl.d/99-sysctl.conf force=no mode=640

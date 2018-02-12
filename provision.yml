@@ -1,0 +1,14 @@
+- hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+  - name: install py27
+    raw: test -e /usr/bin/python2 || pacman -S ansible python2-pip --noconfirm
+
+- hosts: all
+  vars_files:
+    - vars.yml
+  roles:
+    - { role: arch-root, become: yes }
+    - arch-user

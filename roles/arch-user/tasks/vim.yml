@@ -1,0 +1,8 @@
+---
+- name: make sure the vim package is not installed
+  pacman: name=vim state=absent
+  become: yes
+
+- name: install neovim
+  pacman: name=neovim state=present
+  become: yes

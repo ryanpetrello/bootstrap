@@ -1,0 +1,32 @@
+---
+- name: install sudo
+  pacman: name=sudo state=present
+
+- name: backup /etc/sudoers
+  command: cp -f /etc/sudoers /etc/sudoers.bak
+
+- name: temporary copy of /etc/sudoers
+  command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+- name: create visudo alias and set some defaults
+  lineinfile:
+    dest: /etc/sudoers.tmp
+    state: present
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^Cmnd_Alias POWER', line: 'Cmnd_Alias POWER = /usr/bin/systemctl poweroff, /usr/bin/systemctl reboot, /usr/bin/systemctl suspend, /usr/bin/systemctl hibernate' }
+    - { regexp: '^Cmnd_Alias SERVICE', line: 'Cmnd_Alias SERVICE = /usr/bin/systemctl status, /usr/bin/systemctl is-enabled' }
+    - { regexp: '^Defaults env_keep', line: 'Defaults env_keep += "ftp_proxy http_proxy https_proxy no_proxy"' }
+    - { regexp: '^Defaults env_editor', line: 'Defaults env_editor,editor=/usr/bin/vim:/usr/bin/vi:/usr/bin/nano' }
+
+- name: give some permissions to "{{ archlinux_user_name }}"
+  lineinfile:
+    dest: /etc/sudoers.tmp
+    state: present
+    line: "{{ item }}"
+  with_items:
+    - '{{ archlinux_user_name }} ALL=(ALL) ALL, NOPASSWD: POWER, NOPASSWD: SERVICE'
+
+- name: check if /etc/sudoers.tmp is ok, and copy it to /etc/sudoers
+  shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers

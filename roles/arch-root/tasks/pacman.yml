@@ -1,0 +1,12 @@
+---
+- name: update repositories cache
+  pacman: update_cache=yes
+
+- name: refresh pacman keys
+  command: pacman-key --refresh-keys
+
+- name: update pacman package lists
+  command: pacman -Syy --noconfirm
+
+- name: perform full upgrade
+  pacman: upgrade=yes
