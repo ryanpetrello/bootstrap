@@ -10,6 +10,8 @@
     - strace
     - gnu-netcat
     - net-tools
+    - make
+    - autocono
 
 - name: enable ntp
   service: name=ntpd state=started enabled=yes
@@ -19,3 +21,9 @@
 
 - name: create /etc/sysctl.d configuration file
   copy: content="" dest=/etc/sysctl.d/99-sysctl.conf force=no mode=640
+
+- name: set colemak as default layout
+  lineinfile:
+    dest: /etc/vconsole.conf
+    line: 'KEYMAP="colemak"'
+    create: true
