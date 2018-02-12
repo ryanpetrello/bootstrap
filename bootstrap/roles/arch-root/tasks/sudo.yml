@@ -17,6 +17,7 @@
   with_items:
     - { regexp: '^Cmnd_Alias POWER', line: 'Cmnd_Alias POWER = /usr/bin/systemctl poweroff, /usr/bin/systemctl reboot, /usr/bin/systemctl suspend, /usr/bin/systemctl hibernate' }
     - { regexp: '^Cmnd_Alias SERVICE', line: 'Cmnd_Alias SERVICE = /usr/bin/systemctl status, /usr/bin/systemctl is-enabled' }
+    - { regexp: '^Cmnd_Alias PACMAN', line: 'Cmnd_Alias PACMAN = /usr/bin/pacman, /usr/bin/yaourt' }
     - { regexp: '^Defaults env_keep', line: 'Defaults env_keep += "ftp_proxy http_proxy https_proxy no_proxy"' }
     - { regexp: '^Defaults env_editor', line: 'Defaults env_editor,editor=/usr/bin/vim:/usr/bin/vi:/usr/bin/nano' }
 
@@ -26,7 +27,7 @@
     state: present
     line: "{{ item }}"
   with_items:
-    - '{{ archlinux_user_name }} ALL=(ALL) ALL, NOPASSWD: POWER, NOPASSWD: SERVICE'
+    - '{{ archlinux_user_name }} ALL=(ALL) ALL, NOPASSWD: POWER, NOPASSWD: SERVICE, NOPASSWD: PACMAN'
 
 - name: check if /etc/sudoers.tmp is ok, and copy it to /etc/sudoers
   shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers

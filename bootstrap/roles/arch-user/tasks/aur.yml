@@ -4,45 +4,41 @@
     accept_hostkey: yes
     repo: "https://aur.archlinux.org/package-query.git"
     dest: ~/package-query
-  become: yes
-  become_user: "{{ archlinux_user_name }}"
 
 - name: clone yaourt
   git:
     accept_hostkey: yes
     repo: "https://aur.archlinux.org/yaourt.git"
     dest: ~/yaourt
-  become: yes
-  become_user: "{{ archlinux_user_name }}"
 
 - name: makepkg package-query
   shell: 'cd ~/package-query && makepkg --noconfirm -f -s'
-  become: yes
-  become_user: "{{ archlinux_user_name }}"
 
 - name: install package-query
   shell: "pacman -U /home/{{ archlinux_user_name }}/package-query/*.pkg.tar.xz --noconfirm"
-  become: yes
+  become: true
+  become_user: "root"
 
 - name: makepkg yaourt
   shell: 'cd ~/yaourt && makepkg --noconfirm -f -s'
-  become: yes
-  become_user: "{{ archlinux_user_name }}"
 
 - name: install yaourt
   shell: "pacman -U /home/{{ archlinux_user_name }}/yaourt/*.pkg.tar.xz --noconfirm"
-  become: yes
+  become: true
+  become_user: "root"
 
 - name: cleanup package-query and yaourt
   file: path={{ item }} state=absent
   with_items:
     - '~/package-query'
     - '~/yaourt'
-  become: yes
-  become_user: "{{ archlinux_user_name }}"
 
 - name: install utilities from aur
   command: "yaourt -S {{ item }} --noconfirm"
   with_items:
     - gnome-shell-extension-dash-to-dock
-    - papirus-icon-theme-git
+
+- name: install gtk theme
+  command: "gsettings set org.gnome.desktop.interface gtk-theme Arc"
+  become: false
+  become_user: "root"
