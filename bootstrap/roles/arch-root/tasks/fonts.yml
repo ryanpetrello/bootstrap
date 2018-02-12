@@ -1,0 +1,5 @@
+- name: install apps
+  pacman: name={{ item }} state=present
+  with_items:
+    - ttf-inconsolata
+  become: yes

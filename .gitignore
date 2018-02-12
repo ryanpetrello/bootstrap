@@ -18,6 +18,7 @@
 !/venvs/
 !/.vim/*
 !/.xinitrc
+!/.Xdefaults
 !/.zsh*
 !/.fzf.zsh
 !/.bashrc
