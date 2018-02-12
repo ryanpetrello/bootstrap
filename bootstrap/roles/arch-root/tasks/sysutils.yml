@@ -11,7 +11,7 @@
     - gnu-netcat
     - net-tools
     - make
-    - autocono
+    - autoconf
 
 - name: enable ntp
   service: name=ntpd state=started enabled=yes
