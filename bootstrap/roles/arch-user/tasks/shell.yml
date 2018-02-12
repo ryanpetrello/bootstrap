@@ -23,3 +23,8 @@
   shell: git fetch && git reset --hard origin/master
   args:
     chdir: "/home/{{ archlinux_user_name }}"
+
+- name: fetch git submodules
+  command: git pup
+  args:
+    chdir: "/home/{{ archlinux_user_name }}"

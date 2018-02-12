@@ -4,12 +4,12 @@
     name = Ryan Petrello
     email = lists@ryanpetrello.com
 [core]
-    excludesfile = /Users/ryan/.gitexcludes
+    excludesfile = ~/.gitexcludes
 [alias]
     ci = commit
     st = status
     info = remote show origin
-    pup = !sh -c 'git pull && git submodule init && git submodule update && git submodule status'
+    pup = !sh -c 'git submodule init && git submodule update && git submodule status'
     undo = reset --soft HEAD~1
 [color]
     diff = auto

@@ -4,4 +4,3 @@
 - import_tasks: devel.yml
 - import_tasks: vim.yml
 - import_tasks: shell.yml
-- import_tasks: applications.yml
