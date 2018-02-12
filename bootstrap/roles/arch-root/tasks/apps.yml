@@ -1,7 +1,11 @@
 - name: install apps
   pacman: name={{ item }} state=present
   with_items:
+    - base-devel
     - git
+    - zsh
+    - zsh-completions
+    - vim
     - fzf
     - ripgrep
     - firefox

@@ -1,11 +1,4 @@
 ---
-- name: install zsh
-  pacman: name={{ item }} state=present
-  with_items:
-    - zsh
-    - zsh-completions
-  become: yes
-
 - name: change default shell to zsh
   user: name={{ item }} shell=/usr/bin/zsh
   with_items:
