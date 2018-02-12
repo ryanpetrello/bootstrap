@@ -11,4 +11,4 @@
     - vars.yml
   roles:
     - { role: arch-root, become: yes }
-    - arch-user
+    - { role: arch-user, become: yes, become_user: "{{ archlinux_user_name }}" }

@@ -12,3 +12,14 @@
     - root
     - "{{ archlinux_user_name }}"
   become: yes
+
+- name: fetch dotfiles
+  shell: git init && git remote add origin "{{ dotfiles_git }}"
+  args:
+    chdir: "/home/{{ archlinux_user_name }}"
+    creates: ~/.git
+
+- name: fetch dotfiles
+  shell: git fetch && git reset --hard origin/master
+  args:
+    chdir: "/home/{{ archlinux_user_name }}"
