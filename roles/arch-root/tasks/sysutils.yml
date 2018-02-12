@@ -7,6 +7,8 @@
     - ntp
     - wget
     - openssh
+    - strace
+    - gnu-netcat
     - net-tools
 
 - name: enable ntp

@@ -1,6 +1,7 @@
 ---
+- import_tasks: ssh.yml
 - import_tasks: git.yml
 - import_tasks: devel.yml
 - import_tasks: vim.yml
-- import_tasks: applications.yml
 - import_tasks: shell.yml
+- import_tasks: applications.yml

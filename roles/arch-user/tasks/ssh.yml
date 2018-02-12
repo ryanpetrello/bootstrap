@@ -1,0 +1,14 @@
+---
+- name: ensure ~/.ssh exists
+  file: path="/home/{{ archlinux_user_name }}/.ssh" state=directory
+  become: true
+
+- name: copy ssh keys
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ archlinux_user_name }}/.ssh"
+    owner: "{{ archlinux_user_name }}"
+    mode: 600
+  with_fileglob:
+    - ~/.ssh/*
+  become: true
