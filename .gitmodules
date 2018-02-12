@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/fzf.vim"]
 	path = .vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule ".vim/bundle/chapa.vim"]
+	path = .vim/bundle/chapa.vim
+	url = https://github.com/alfredodeza/chapa.vim
