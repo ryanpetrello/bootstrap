@@ -2,9 +2,8 @@
 - name: change default shell to zsh
   user: name={{ item }} shell=/usr/bin/zsh
   with_items:
-    - root
     - "{{ archlinux_user_name }}"
-  become: yes
+  become_user: "root"
 
 - name: fetch dotfiles
   shell: git init && git remote add origin "{{ dotfiles_git }}"
