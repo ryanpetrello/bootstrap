@@ -248,7 +248,7 @@ function! ToggleBuff()
 endfunction
 
 " enable fzf completion
-set rtp+=/usr/local/opt/fzf
+set rtp+=/usr/share/fzf
 nmap <Leader>p <Esc>:FZF<CR>
 let g:fzf_action = {
   \ 'enter': 'split' }
