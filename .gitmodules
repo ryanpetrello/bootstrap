@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/chapa.vim"]
 	path = .vim/bundle/chapa.vim
 	url = https://github.com/alfredodeza/chapa.vim
+[submodule ".vim/bundle/colorsupport.vim"]
+	path = .vim/bundle/colorsupport.vim
+	url = https://github.com/vim-scripts/colorsupport.vim
