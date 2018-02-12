@@ -3,8 +3,5 @@
   with_items:
     - xorg
     - xorg-xinit
-    - gnome
-    - gnome-extra
-    - gnome-tweak-tool
-    - arc-gtk-theme
+    - awesome
   become: yes

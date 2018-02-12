@@ -32,11 +32,3 @@
   with_items:
     - '~/package-query'
     - '~/yaourt'
-
-- name: install utilities from aur
-  command: "yaourt -S {{ item }} --noconfirm"
-  with_items:
-    - gnome-shell-extension-dash-to-dock
-
-- name: install gtk theme
-  shell: "DISPLAY=:0.0 dconf write /org/gnome/desktop/interface/gtk-theme \"'Arc-Darker'\""
