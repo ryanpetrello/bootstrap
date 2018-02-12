@@ -8,6 +8,7 @@
 !/.gitmodules
 !/.gittemplates
 !/.ackrc
+!/.config*
 !/.mutt*
 .mutt/error.log
 !/.offlineimaprc
