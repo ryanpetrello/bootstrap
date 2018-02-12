@@ -39,6 +39,4 @@
     - gnome-shell-extension-dash-to-dock
 
 - name: install gtk theme
-  command: "gsettings set org.gnome.desktop.interface gtk-theme Arc"
-  become: false
-  become_user: "root"
+  shell: "DISPLAY=:0.0 dconf write /org/gnome/desktop/interface/gtk-theme \"'Arc-Darker'\""

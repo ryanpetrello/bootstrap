@@ -1,6 +1,8 @@
 - name: install desktop environment
   pacman: name={{ item }} state=present
   with_items:
+    - xorg
+    - xorg-xinit
     - gnome
     - gnome-extra
     - gnome-tweak-tool
