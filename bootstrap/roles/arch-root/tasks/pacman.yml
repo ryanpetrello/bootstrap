@@ -1,4 +1,7 @@
 ---
+- name: remove old ca-certs
+  file: path="/etc/ssl/certs/ca-certificates.crt" state=absent
+
 - name: update repositories cache
   pacman: update_cache=yes
 
