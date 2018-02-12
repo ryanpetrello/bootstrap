@@ -16,6 +16,7 @@
 !/.notmuch-config
 !/venvs/
 !/.vim/*
+!/.xinitrc
 !/.zsh*
 !/.fzf.zsh
 !/.bashrc

@@ -28,9 +28,3 @@
   command: git pup
   args:
     chdir: "/home/{{ archlinux_user_name }}"
-
-- name: set up xinitrc
-  lineinfile:
-    dest: ~/.xinitrc
-    line: "exec startxfce4"
-    create: true
