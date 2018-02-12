@@ -10,4 +10,5 @@
     - ripgrep
     - firefox
     - xsel
+    - ca-certificates-mozilla
   become: yes
