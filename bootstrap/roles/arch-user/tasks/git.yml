@@ -2,9 +2,3 @@
 - name: install git
   pacman: name=git state=present
   become: yes
-
-- name: configure git user name as "{{ archlinux_fullname }}"
-  command: "/usr/bin/git config --global user.name \"{{ archlinux_fullname }}\""
-
-- name: configure git email as "{{ archlinux_user_email }}"
-  command: "/usr/bin/git config --global user.email \"{{ archlinux_user_email }}\""

@@ -1,3 +1,1 @@
-archlinux_fullname: "Ryan Petrello"
-archlinux_user_email: "lists@ryanpetrello.com"
 archlinux_user_password: "{{ 'example' | password_hash('sha512') }}"

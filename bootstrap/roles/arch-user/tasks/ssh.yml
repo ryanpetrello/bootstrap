@@ -1,6 +1,6 @@
 ---
 - name: ensure ~/.ssh exists
-  file: path="/home/{{ archlinux_user_name }}/.ssh" state=directory
+  file: path="/home/{{ archlinux_user_name }}/.ssh" state=directory owner="{{ archlinux_user_name }}"
   become: true
 
 - name: copy ssh keys

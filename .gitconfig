@@ -1,0 +1,31 @@
+[init]
+    templatedir = ~/.gittemplates
+[user]
+    name = Ryan Petrello
+    email = lists@ryanpetrello.com
+[core]
+    excludesfile = /Users/ryan/.gitexcludes
+[alias]
+    ci = commit
+    st = status
+    info = remote show origin
+    pup = !sh -c 'git pull && git submodule init && git submodule update && git submodule status'
+    undo = reset --soft HEAD~1
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+[color "diff"]
+    whitespace = red reverse
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = cyan
+[diff]
+    ignoreSubmodules = untracked
+    renames = copies
+[push]
+    default = matching
+[commit]
+    gpgsign = true
