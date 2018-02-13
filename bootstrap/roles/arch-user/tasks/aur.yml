@@ -36,4 +36,4 @@
 - name: install utilities from aur
   command: "yaourt -S {{ item }} --noconfirm"
   with_items:
-    - extraterm
+      - google-chrome
