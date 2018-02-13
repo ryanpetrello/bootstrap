@@ -180,7 +180,7 @@ end, 10, "Master")
 --{{---| CPU / sensors widget |-----------
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu,
-'<span background="#4B696D" font="Inconsolata 11"> <span font="Inconsolata 11" color="#DDDDDD">$2%<span color="#888888">·</span>$3% </span></span>', 5)
+'<span background="#4B3B51" font="Inconsolata 11"> <span font="Inconsolata 11" color="#DDDDDD">$2%<span color="#888888">·</span>$3% </span></span>', 5)
 
 cpuicon = wibox.widget.imagebox()
 cpuicon:set_image(beautiful.cpuicon)
@@ -272,10 +272,10 @@ for s = 1, screen.count() do
     right_layout:add(arr8)
     right_layout:add(memicon)
     right_layout:add(memwidget)
-    right_layout:add(arr7)
+    right_layout:add(arr6)
     right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
-    right_layout:add(arr6)
+    right_layout:add(arr5)
     right_layout:add(volumeicon)
     right_layout:add(volume)
     right_layout:add(arr5)
