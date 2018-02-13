@@ -255,7 +255,7 @@ let g:fzf_action = {
 let g:fzf_layout = { 'down': '20%' }
 
 " Auto-open a split pane with an applicable diff for git commits
-autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p | vertical resize 83 | DimInactiveOff
+autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p | vertical resize 83
 
 " Mute colors for inactive tmux panes
 au FocusLost * :silent! set t_Co=0

@@ -86,11 +86,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    awful.layout.suit.max,
 }
 -- }}}
 
@@ -134,7 +131,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 --{{-- Time and Date Widget }} --
 tdwidget = wibox.widget.textbox()
-local strf = '<span font="' .. font .. '" color="#EEEEEE" background="#777E76">%b %d %I:%M</span>'
+local strf = '<span font="' .. font .. '" color="#EEEEEE" background="#777E76"> %b %d %I:%M </span>'
 vicious.register(tdwidget, vicious.widgets.date, strf, 20)
 
 ---{{---| Wifi Signal Widget |-------
@@ -159,16 +156,10 @@ batwidget = wibox.widget.textbox()
 vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="Inconsolata 11"><span font="Inconsolata 11" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 30, "BAT0" )
 
 
---{{---| File Size widget |-----
-fswidget = wibox.widget.textbox()
-
-fsicon = wibox.widget.imagebox()
-fsicon:set_image(beautiful.fsicon)
-
 ----{{--| Volume / volume icon |----------
 volume = wibox.widget.textbox()
 vicious.register(volume, vicious.widgets.volume,
-'<span background="#4B3B51" font="Inconsolata 11"><span font="Inconsolata 11" color="#EEEEEE"> Vol:$1 </span></span>', 10, "Master")
+'<span background="#4B3B51" font="Inconsolata 11"><span font="Inconsolata 11" color="#EEEEEE"> $1 </span></span>', 10, "Master")
 
 volumeicon = wibox.widget.imagebox()
 vicious.register(volumeicon, vicious.widgets.volume, function(widget, args)
@@ -197,7 +188,7 @@ cpuicon:set_image(beautiful.cpuicon)
 --{{--| MEM widget |-----------------
 memwidget = wibox.widget.textbox()
 
-vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" font="Inconsolata 11"> <span font="Inconsolata 11" color="#EEEEEE" background="#777E76">$2MB </span></span>', 20)
+vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" font="Inconsolata 11"> <span font="Inconsolata 11" color="#FFF" background="#777E76">$2MB </span></span>', 20)
 memicon = wibox.widget.imagebox()
 memicon:set_image(beautiful.mem)
 
@@ -278,7 +269,6 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(arr9)
     right_layout:add(arr8)
     right_layout:add(memicon)
     right_layout:add(memwidget)
@@ -289,8 +279,6 @@ for s = 1, screen.count() do
     right_layout:add(volumeicon)
     right_layout:add(volume)
     right_layout:add(arr5)
-    right_layout:add(fsicon)
-    right_layout:add(fswidget)
     right_layout:add(arr4)
     right_layout:add(baticon)
     right_layout:add(batwidget)
@@ -325,11 +313,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
--- {{ Volume Control }} --
-awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("amixer set Master 5%+", false) end),
-awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("amixer set Master 5%-", false) end),
-awful.key({     }, "XF86AudioMute", function() awful.util.spawn("amixer set Master toggle", false) end),
-
+    -- {{ Volume Control }} --
+    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("amixer set Master 5%+", false) end),
+    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("amixer set Master 5%-", false) end),
+    awful.key({     }, "XF86AudioMute", function() awful.util.spawn("amixer set Master toggle", false) end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
@@ -341,16 +328,26 @@ awful.key({     }, "XF86AudioMute", function() awful.util.spawn("amixer set Mast
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[1]:run() end),
+    awful.key({ modkey },            "space",     function () mypromptbox[1]:run() end)
 )
 
 clientkeys = awful.util.table.join(
+    awful.key({ modkey, "Shift" },   "]", function ()
+        awful.client.focus.byidx(1)
+        if client.focus then client.focus:raise() end
+    end),
+    awful.key({ modkey, "Shift" },   "[", function ()
+        awful.client.focus.byidx(-1)
+        if client.focus then client.focus:raise() end
+    end),
+    awful.key({ modkey, "Shift"    }, "Right",     function () awful.tag.incmwfact( 0.10)    end),
+    awful.key({ modkey, "Shift"    }, "Left",     function () awful.tag.incmwfact(-0.10)    end),
+    awful.key({ modkey, "Shift"    }, "Down",     function () awful.client.incwfact( 0.10)    end),
+    awful.key({ modkey, "Shift"    }, "Up",     function () awful.client.incwfact(-0.10)    end),
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey,           }, "q",      function (c) c:kill()                         end),
+    awful.key({ modkey,           }, "q",      function (c) c:kill()                         end)
 )
 
 -- Bind all key numbers to tags.
