@@ -1,0 +1,29 @@
+---
+- name: install pulseaudio
+  pacman: name={{ item }} state=present
+  with_items:
+    - pulseaudio
+    - pavucontrol
+    - pamixer
+    - pulseaudio-alsa
+    - lib32-libpulse
+    - lib32-alsa-plugins
+  become: yes
+
+- name: install audio plugins
+  pacman: name={{ item }} state=present
+  with_items:
+    - gst-plugins-good
+    - gstreamer0.10-plugins
+    - libao
+  become: yes
+
+- name: copy audio configurations
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    mode: 0644
+  with_items:
+    - { src: modprobe.d/oss.conf, dst: /etc/modprobe.d/oss.conf }
+    - { src: libao.conf, dst: /etc/libao.conf }
+  become: yes
