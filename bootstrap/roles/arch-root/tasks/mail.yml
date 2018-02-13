@@ -1,0 +1,6 @@
+- name: install mail dependencies
+  pacman: name={{ item }} state=present
+  with_items:
+    - neomutt
+    - notmuch
+    - msmtp

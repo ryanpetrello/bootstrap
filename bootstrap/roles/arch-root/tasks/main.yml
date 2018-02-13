@@ -7,4 +7,5 @@
 - import_tasks: sudo.yml
 - import_tasks: sysutils.yml
 - import_tasks: de.yml
+- import_tasks: mail.yml
 - import_tasks: apps.yml
