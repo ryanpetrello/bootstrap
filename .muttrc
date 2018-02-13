@@ -8,7 +8,6 @@ set message_cachedir = ~/.mutt/cache/bodies     # where to store bodies
 set certificate_file = ~/.mutt/certificates     # where to store certs
 set mailcap_path     = ~/.mutt/mailcap          # entries for filetypes
 set tmpdir           = ~/.mutt/temp             # where to keep temp files
-unset header_cache_compress
 unset maildir_header_cache_verify
 
 # Basic Options ---------------------------------------------------------------
@@ -101,6 +100,7 @@ set sort_re                                     # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 # Index Key Bindings ----------------------------------------------------------
+bind index g            noop                # necessary for next line
 bind index gg           first-entry         # more vimmy
 bind index G            last-entry          # even more vimmy
 bind index R            group-reply         # reply-all
@@ -158,6 +158,7 @@ bind index,pager <right>  sidebar-open
 # Pager Key Bindings ----------------------------------------------------------
 bind pager k  previous-line
 bind pager j  next-line
+bind pager g  noop  # necessary for next line
 bind pager gg top
 bind pager G  bottom
 bind pager R  group-reply
