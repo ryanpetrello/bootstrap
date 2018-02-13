@@ -11,5 +11,6 @@
     - ripgrep
     - firefox
     - xsel
+    - xcompmgr
     - ca-certificates-mozilla
   become: yes
