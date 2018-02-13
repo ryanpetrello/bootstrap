@@ -7,6 +7,6 @@
     src: "{{ item }}"
     dest: "/home/{{ archlinux_user_name }}/.ssh"
     owner: "{{ archlinux_user_name }}"
-    mode: 600
+    mode: 0600
   with_fileglob:
     - ~/.ssh/*
