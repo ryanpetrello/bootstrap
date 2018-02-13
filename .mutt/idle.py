@@ -12,29 +12,20 @@ IDLE_FOLDERS = [
 ]
 
 
-def get_mail_pass(account=None, server='imap.gmail.com'):
-    # TODO
-    return ''
-    params = {
-        'security': '/usr/bin/security',
-        'command': 'find-internet-password',
-        'account': account,
-        'server': server,
-        'keychain': '/Users/ryan/Library/Keychains/login.keychain',
-    }
-    command = "sudo -u ryan %(security)s -v %(command)s -g -a %(account)s -s %(server)s %(keychain)s" % params
-    output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-    outtext = [l for l in output.splitlines()
-               if l.startswith('password: ')][0]
-
-    pw = re.match(r'password: "(.*)"', outtext).group(1)
-    return pw
+def get_mail_pass(acct=None):
+    acct = os.path.basename(acct)
+    path = "/home/ryan/.passwd/%s.gpg" % acct
+    args = ["gpg", "--use-agent", "--quiet", "--batch", "-d", path]
+    try:
+        return subprocess.check_output(args).strip()
+    except subprocess.CalledProcessError:
+        return ""
 
 
 class _sock():
 
     def __init__(self, name, user, directory, server='imap.gmail.com'):
-        password = get_mail_pass(user, server)
+        password = get_mail_pass(user)
         self.name = name
         self.directory = directory
         print "Connecting to %s %s [%s]" % (name, user, server)
@@ -56,3 +47,18 @@ if __name__ == '__main__':
     for sock in readable:
         print "-u basic -o"
         break
+
+
+def prime_gpg_agent():
+    ret = False
+    i = 1
+    while not ret:
+        ret = (get_mail_pass("prime") == "prime")
+        if i > 2:
+            from offlineimap.ui import getglobalui
+            sys.stderr.write("Error reading in passwords. Terminating.\n")
+            getglobalui().terminate()
+        i += 1
+    return ret
+
+prime_gpg_agent()
