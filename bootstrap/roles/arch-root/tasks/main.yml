@@ -1,6 +1,7 @@
 ---
 - import_tasks: pacman.yml
 - import_tasks: connman.yml
+- import_tasks: audio.yml
 - import_tasks: user.yml
 - import_tasks: sudo.yml
 - import_tasks: sysutils.yml
