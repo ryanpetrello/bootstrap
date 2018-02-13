@@ -1,4 +1,4 @@
 ---
 ansible_python_interpreter: /usr/bin/python2
 archlinux_user_name: ryan
-dotfiles_git: https://github.com/ryanpetrello/bootstrap.git
+dotfiles_git: git@github.com:ryanpetrello/bootstrap.git
