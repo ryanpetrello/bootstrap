@@ -242,7 +242,7 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt()
+    mypromptbox[s] = awful.widget.prompt({ prompt = " RUN: ", fg = beautiful.fg_launch })
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
@@ -336,10 +336,12 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" },   "]", function ()
         awful.client.focus.byidx(1)
+        client.focus.opacity = 1
         if client.focus then client.focus:raise() end
     end),
     awful.key({ modkey, "Shift" },   "[", function ()
         awful.client.focus.byidx(-1)
+        client.focus.opacity = 1
         if client.focus then client.focus:raise() end
     end),
     awful.key({ modkey, "Shift"    }, "Right",     function () awful.tag.incmwfact( 0.10)    end),
@@ -347,7 +349,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"    }, "Down",     function () awful.client.incwfact( 0.10)    end),
     awful.key({ modkey, "Shift"    }, "Up",     function () awful.client.incwfact(-0.10)    end),
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey,           }, "q",      function (c) c:kill()                         end)
+    awful.key({ modkey,           }, "w",      function (c) c:kill()                         end)
 )
 
 -- Bind all key numbers to tags.
@@ -477,11 +479,21 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-awful.util.spawn_with_shell("xmodmap ~/.speedswapper")
-
 -- {{ Turns off the terminal bell }} --
 awful.util.spawn_with_shell("/usr/bin/xset b off")
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c)
+    c.cpacity = 1
+    c.border_color = beautiful.border_focus
+end)
+client.connect_signal("unfocus", function(c)
+    if c.name == "urxvt" then
+        c.opacity = .5
+    end
+    c.border_color = beautiful.border_normal
+end)
 -- }}}
+
+-- {{ Turn on opacity support w/ compmgr
+awful.util.spawn_with_shell("xcompmgr -f -c -s")
+
