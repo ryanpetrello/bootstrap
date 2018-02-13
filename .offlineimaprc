@@ -8,22 +8,18 @@ keepalive = 60
 [Account Ryan]
 localrepository = Ryan-Local
 remoterepository = Ryan-Remote
-status_backend = sqlite
 
 [Account DC]
 localrepository = DC-Local
 remoterepository = DC-Remote
-status_backend = sqlite
 
 [Account DC-Error]
 localrepository = DC-Error-Local
 remoterepository = DC-Error-Remote
-status_backend = sqlite
 
 [Account RH]
 localrepository = RH-Local
 remoterepository = RH-Remote
-status_backend = sqlite
 
 [Repository Ryan-Local]
 type = Maildir
@@ -38,6 +34,7 @@ nametrans = lambda folder: {'drafts'        : 'Drafts',
 [Repository Ryan-Remote]
 maxconnections = 3
 type = IMAP
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotehost = mail.messagingengine.com
 remoteuser = ryan@ryanpetrello.com
 remoteuser = ryan@ryanpetrello.com
@@ -71,6 +68,7 @@ folderfilter = lambda folder: (folder not in ['[Gmail]/Trash',
 [Repository DC-Remote]
 maxconnections = 3
 type = Gmail
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = ryan@draughtcraft.com
 remotepasseval = get_mail_pass(account='ryan@draughtcraft.com')
 realdelete = no
@@ -100,6 +98,7 @@ nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
 [Repository RH-Remote]
 maxconnections = 3
 type = Gmail
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 remoteuser = rpetrell@redhat.com
 remotepasseval = get_mail_pass(account='rpetrell@redhat.com')
@@ -133,6 +132,7 @@ folderfilter = lambda folder: (folder not in ['[Gmail]/Trash',
 [Repository DC-Error-Remote]
 maxconnections = 3
 type = Gmail
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = errors@draughtcraft.com
 remotepasseval = get_mail_pass(account='errors@draughtcraft.com')
 realdelete = no
