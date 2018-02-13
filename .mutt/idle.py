@@ -1,8 +1,10 @@
 #!/usr/bin/python
 import imaplib
+import os
 import re
 import select
 import subprocess
+import sys
 
 IDLE_FOLDERS = [
     ("Ryan", "ryan@ryanpetrello.com", "INBOX", 'imap.fastmail.com'),

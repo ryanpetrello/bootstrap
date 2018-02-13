@@ -16,7 +16,7 @@ from StringIO import StringIO
 
 
 def view_html_message():
-    with open('/Users/ryan/.mail/temporary/cur-message', 'rb') as data:
+    with open('/home/ryan/.mail/temporary/cur-message', 'rb') as data:
         msgid = data.read()
 
     fnames = subprocess.check_output(
