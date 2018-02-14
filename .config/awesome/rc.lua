@@ -335,12 +335,10 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" },   "]", function ()
         awful.client.focus.byidx(1)
-        client.focus.opacity = 1
         if client.focus then client.focus:raise() end
     end),
     awful.key({ modkey, "Shift" },   "[", function ()
         awful.client.focus.byidx(-1)
-        client.focus.opacity = 1
         if client.focus then client.focus:raise() end
     end),
     awful.key({ modkey, "Shift"    }, "Right",     function () awful.tag.incmwfact( 0.10)    end),
@@ -480,17 +478,12 @@ end)
 awful.util.spawn_with_shell("/usr/bin/xset b off")
 
 client.connect_signal("focus", function(c)
-    c.cpacity = 1
     c.border_color = beautiful.border_focus
 end)
 client.connect_signal("unfocus", function(c)
-    if c.name == "urxvt" then
-        c.opacity = .5
-    end
     c.border_color = beautiful.border_normal
 end)
 -- }}}
 
 -- {{ Turn on opacity support w/ compmgr
 awful.util.spawn_with_shell("xcompmgr -f -c -s")
-
