@@ -1,0 +1,26 @@
+---
+- name: generate a random vault pw
+  shell: "openssl passwd -1 -in /dev/urandom | head -1 > ~{{ archlinux_user_name }}/.v"
+  creates: "~{{ archlinux_user_name }}/.v"
+
+- name: set proper mode on vault pw
+  file:
+    path: "~{{ archlinux_user_name }}/.v"
+    mode: 0600
+
+- name: ensure ~/.passwd exists
+  file:
+    path: "~{{ archlinux_user_name }}/.passwd"
+    state: directory
+    mode: 0700
+
+- name: write password files
+  copy:
+    dest: "~{{ archlinux_user_name }}/.passwd/{{item.name|hash('md5')}}"
+    content: "{{ item.value }}"
+    mode: 0600
+  with_items: "{{ mail_passwords }}"
+
+- name: generate mail passwords
+  shell: "ansible-vault encrypt --vault-password-file ~{{ archlinux_user_name }}/.v ~{{ archlinux_user_name }}/.passwd/{{item.name|hash('md5')}}"
+  with_items: "{{ mail_passwords }}"
