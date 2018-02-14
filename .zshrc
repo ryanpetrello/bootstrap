@@ -21,6 +21,8 @@ alias vi="vim"
 alias mutt="neomutt"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
+alias vpnup='sudo systemctl start openvpn-client@rdu'
+alias vpndown='sudo systemctl stop openvpn-client@rdu'
 
 export LESS=FRSXQ
 
@@ -90,9 +92,9 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' enable git svn
 precmd () { 
     psvar[5]=''
-    ifconfig | grep -q utun
+    ifconfig | grep -q tun
     if [ $? -eq 0 ]; then
-        psvar[5]=$(ps -ef | grep -q openvpn && echo " 🔒 ")
+        psvar[5]=$(pidof openvpn 1>/dev/null && echo " 🔒 ")
     fi
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
         zstyle ':vcs_info:*' formats $'[%{\e[1;33m%}%b%F{foreground}:%c%u%F{foreground}] '
