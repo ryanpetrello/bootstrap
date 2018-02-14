@@ -27,3 +27,7 @@
     dest: /etc/vconsole.conf
     line: 'KEYMAP="colemak"'
     create: true
+
+- name: set a timezone
+  timezone:
+    name: America/New_York
