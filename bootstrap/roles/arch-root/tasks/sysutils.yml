@@ -31,3 +31,10 @@
 - name: set a timezone
   timezone:
     name: America/New_York
+
+
+- name: symlink python
+  file:
+    src: "/usr/bin/python2"
+    dest: "/usr/bin/python"
+    state: link
