@@ -94,7 +94,7 @@ precmd () {
     psvar[5]=''
     ifconfig | grep -q tun
     if [ $? -eq 0 ]; then
-        psvar[5]=$(pidof openvpn 1>/dev/null && echo " 🔒 ")
+        psvar[5]=$(pidof openvpn 1>/dev/null && echo " 🔑 ")
     fi
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
         zstyle ':vcs_info:*' formats $'[%{\e[1;33m%}%b%F{foreground}:%c%u%F{foreground}] '
@@ -106,7 +106,7 @@ precmd () {
 local git='$vcs_info_msg_0_'
 
 # Custom status line
-PS1="[`hostname | sed 's/\..*//'`]${fg_lblue}%5v${fg_white} ${git}${fg_lblue}%~ ${fg_white}"
+PS1="[`hostname | sed 's/\..*//'`]${fg_yellow}%5v ${fg_white}${git}${fg_lblue}%~ ${fg_white}"
 
 # Show a different cursor for different vim modes
 function zle-keymap-select zle-line-init

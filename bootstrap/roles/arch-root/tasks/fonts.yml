@@ -2,4 +2,5 @@
   pacman: name={{ item }} state=present
   with_items:
     - ttf-inconsolata
+    - ttf-symbola
   become: yes

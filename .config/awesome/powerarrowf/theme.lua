@@ -6,7 +6,7 @@ theme = {}
 
 pathToConfig = (os.getenv("HOME") .. "/.config/awesome/")
 
-theme.font          = "sans 8"
+theme.font          = "Inconsolata 8"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#1E2320"

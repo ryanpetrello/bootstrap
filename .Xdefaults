@@ -2,10 +2,10 @@ URxvt.keysym.Mod4-k: command:\033c
 URxvt.keysym.Mod4-c: eval:selection_to_clipboard
 URxvt.keysym.Mod4-v: eval:paste_clipboard
 
-urxvt*font:             xft:Inconsolata:size=11
+urxvt*font:             xft:Inconsolata:size=11,xft:Symbola:style=Regular
 urxvt*termName:         rxvt
 urxvt*background:       #0c0d0e
-urxvt*foreground:       #7f8f9f
+urxvt*foreground:       #ffffff
 urxvt*scrollBar:        false
 urxvt*matcher.button:   1
 urxvt.transparent:    false
