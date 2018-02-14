@@ -80,7 +80,10 @@ def view_html_message():
         f.write(buff.getvalue().decode('utf8'))
         f.write('</body></html>')
         f.flush()
-        subprocess.check_call(['open', '-a', '/Applications/Safari.app/', f.name])
+        subprocess.getoutput(
+            '''echo 'require("awful").util.spawn("google-chrome-stable https://google.com")' | awesome-client''',
+            shell=True
+        )
         time.sleep(3)
 
 
