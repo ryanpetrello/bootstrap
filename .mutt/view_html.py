@@ -80,8 +80,8 @@ def view_html_message():
         f.write(buff.getvalue().decode('utf8'))
         f.write('</body></html>')
         f.flush()
-        subprocess.getoutput(
-            '''echo 'require("awful").util.spawn("google-chrome-stable https://google.com")' | awesome-client''',
+        subprocess.call(
+            "echo 'require(\"awful\").util.spawn(\"google-chrome-stable file://{}\")' | awe    some-client".format(f.name),
             shell=True
         )
         time.sleep(3)
