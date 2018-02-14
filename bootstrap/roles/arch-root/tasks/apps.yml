@@ -2,7 +2,7 @@
   pacman: name={{ item }} state=present
   with_items:
     - base-devel
-    - rxvt-unicode
+    - termite
     - git
     - zsh
     - zsh-completions
