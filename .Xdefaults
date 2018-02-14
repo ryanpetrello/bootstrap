@@ -1,4 +1,6 @@
 URxvt.keysym.Mod4-k: command:\033c
+URxvt.keysym.Mod4-c: eval:selection_to_clipboard
+URxvt.keysym.Mod4-v: eval:paste_clipboard
 
 urxvt*font:             xft:Inconsolata:size=11
 urxvt*termName:         rxvt

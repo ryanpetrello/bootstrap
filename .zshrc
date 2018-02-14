@@ -19,6 +19,8 @@ alias .....="cd ../../../.."
 alias idk="printf \"¯\_(ツ)_/¯\" | pbcopy && echo '¯\_(ツ)_/¯'"
 alias vi="vim"
 alias mutt="neomutt"
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 
 export LESS=FRSXQ
 
