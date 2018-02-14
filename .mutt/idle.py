@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import imaplib
+import hashlib
 import os
 import re
 import select
@@ -14,10 +15,11 @@ IDLE_FOLDERS = [
 ]
 
 
-def get_mail_pass(acct=None):
-    acct = os.path.basename(acct)
-    path = "/home/ryan/.passwd/%s.gpg" % acct
-    args = ["gpg", "--use-agent", "--quiet", "--batch", "-d", path]
+def get_mail_pass(acct):
+    acct = os.path.basename(hashlib.md5(acct).hexdigest())
+    path = "/home/ryan/.passwd/%s" % acct
+    args = ["ansible-vault", "decrypt", path, "--vault-password-file",
+            "/home/ryan/.v", "--output", "-"]
     try:
         return subprocess.check_output(args).strip()
     except subprocess.CalledProcessError:
@@ -49,18 +51,3 @@ if __name__ == '__main__':
     for sock in readable:
         print "-u basic -o"
         break
-
-
-def prime_gpg_agent():
-    ret = False
-    i = 1
-    while not ret:
-        ret = (get_mail_pass("prime") == "prime")
-        if i > 2:
-            from offlineimap.ui import getglobalui
-            sys.stderr.write("Error reading in passwords. Terminating.\n")
-            getglobalui().terminate()
-        i += 1
-    return ret
-
-prime_gpg_agent()
