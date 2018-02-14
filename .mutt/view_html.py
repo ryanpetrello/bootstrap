@@ -81,7 +81,7 @@ def view_html_message():
         f.write('</body></html>')
         f.flush()
         subprocess.call(
-            "echo 'require(\"awful\").util.spawn(\"google-chrome-stable file://{}\")' | awe    some-client".format(f.name),
+            "echo 'require(\"awful\").util.spawn(\"google-chrome-stable file://{}\")' | awesome-client".format(f.name),
             shell=True
         )
         time.sleep(3)
