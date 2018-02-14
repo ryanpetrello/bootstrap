@@ -42,6 +42,7 @@
   service:
     name: systemd-resolved
     state: started
+    enabled: yes
 
 - name: configure openvpn service
   copy:
