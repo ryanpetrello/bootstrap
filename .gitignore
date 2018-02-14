@@ -1,5 +1,9 @@
 /*
 !/bootstrap*
+/bootstrap/vault-pw
+/bootstrap/openvpn-client@.service
+/bootstrap/rdu.conf
+/bootstrap/ca.crt
 !/.inputrc
 !/.vim*
 !/.gitconfig

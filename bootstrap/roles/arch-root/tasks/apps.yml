@@ -12,4 +12,5 @@
     - xsel
     - xcompmgr
     - ca-certificates-mozilla
+    - openvpn
   become: yes

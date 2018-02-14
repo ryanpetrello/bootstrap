@@ -32,9 +32,28 @@
   timezone:
     name: America/New_York
 
-
 - name: symlink python
   file:
     src: "/usr/bin/python2"
     dest: "/usr/bin/python"
     state: link
+
+- name: enable systemd-resolved
+  service:
+    name: systemd-resolved
+    state: started
+
+- name: configure openvpn service
+  copy:
+    src: "openvpn-client@.service"
+    dest: "/usr/lib/systemd/system/"
+    mode: 644
+
+- name: add openvpn rdu endpoint
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/openvpn/client/"
+    mode: 644
+  with_items:
+    - "rdu.conf"
+    - "ca.crt"

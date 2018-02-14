@@ -37,7 +37,6 @@ type = IMAP
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotehost = mail.messagingengine.com
 remoteuser = ryan@ryanpetrello.com
-remoteuser = ryan@ryanpetrello.com
 remotepasseval = get_mail_pass('ryan@ryanpetrello.com')
 realdelete = no
 nametrans = lambda folder: {'Drafts'           : 'drafts',

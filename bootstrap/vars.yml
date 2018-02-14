@@ -1,1 +1,0 @@
-archlinux_user_password: "{{ 'example' | password_hash('sha512') }}"

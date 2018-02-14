@@ -37,3 +37,4 @@
   command: "yaourt -S {{ item }} --noconfirm"
   with_items:
       - google-chrome
+      - openvpn-update-systemd-resolved
