@@ -48,7 +48,5 @@ urxvt*color14:     #93e0e3
 urxvt*color15:     #ffffff
 !}}}
 
-urxvt*perl-lib: /home/ryan/urxvt-vim-scrollback
-urxvt*perl-ext-common: vim-scrollback
-; configure alt-s as the keybinding to enter vim scrollback mode.
-urxvt.vim-scrollback: Mod4-s
+URxvt.perl-ext-common: ...,keyboard-select
+URxvt.keysym.Mod4-n: perl:keyboard-select:activate
