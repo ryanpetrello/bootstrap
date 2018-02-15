@@ -20,7 +20,9 @@
     content: "{{ item.value }}"
     mode: 0600
   with_items: "{{ mail_passwords }}"
+  no_log: true
 
 - name: generate mail passwords
   shell: "ansible-vault encrypt --vault-password-file ~{{ archlinux_user_name }}/.v ~{{ archlinux_user_name }}/.passwd/{{item.name|hash('md5')}}"
   with_items: "{{ mail_passwords }}"
+  no_log: true

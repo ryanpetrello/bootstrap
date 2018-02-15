@@ -2,11 +2,11 @@
   pacman: name={{ item }} state=present
   with_items:
     - base-devel
-    - termite
+    - urxvt
     - git
     - zsh
     - zsh-completions
-    - vim
+    - gvim
     - fzf
     - ripgrep
     - xsel
