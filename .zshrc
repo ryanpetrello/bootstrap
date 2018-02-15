@@ -58,6 +58,7 @@ setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt hist_ignore_all_dups
 bindkey '^R' history-incremental-search-backward
+bindkey '^n' send-break
 h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
 
 # vim as default + launch settings

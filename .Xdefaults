@@ -47,8 +47,6 @@ urxvt*color15:     #ffffff
 !}}}
 
 URxvt.perl-ext-common: default,keyboard-select
-URxvt.keysym.Control-n: perl:keyboard-select:activate
+URxvt.keysym.Control-Up: perl:keyboard-select:activate
 URxvt.keysym.Control-c: eval:selection_to_clipboard
 URxvt.keysym.Control-v: eval:paste_clipboard
-URxvt.keysym.Control-Up: eval:scroll_up 10
-URxvt.keysym.Control-Down: eval:scroll_down 10
