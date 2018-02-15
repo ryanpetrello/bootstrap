@@ -48,7 +48,7 @@ themes_dir = (config_dir .. "/powerarrowf")
 beautiful.init(themes_dir .. "/theme.lua")
 
 -- This is used later as the default terminal, browser and editor to run.
-terminal = "termite"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "chromium"
