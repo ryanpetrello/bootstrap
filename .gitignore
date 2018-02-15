@@ -25,6 +25,7 @@
 !/.vim/*
 !/.xinitrc
 !/.Xdefaults
+!/.Xmodmap
 !/.zsh*
 !/.fzf.zsh
 !/.bashrc
