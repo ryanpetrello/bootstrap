@@ -1,6 +1,4 @@
-URxvt.keysym.Mod4-k: command:\033c
-URxvt.keysym.Mod4-c: eval:selection_to_clipboard
-URxvt.keysym.Mod4-v: eval:paste_clipboard
+URxvt.keysym.Control-k: command:\033c
 
 urxvt*font:             xft:Inconsolata:size=11,xft:Symbola:style=Regular
 urxvt*termName:         rxvt
@@ -48,5 +46,9 @@ urxvt*color14:     #93e0e3
 urxvt*color15:     #ffffff
 !}}}
 
-URxvt.perl-ext-common: ...,keyboard-select
-URxvt.keysym.Mod4-n: perl:keyboard-select:activate
+URxvt.perl-ext-common: default,keyboard-select
+URxvt.keysym.Control-n: perl:keyboard-select:activate
+URxvt.keysym.Control-c: eval:selection_to_clipboard
+URxvt.keysym.Control-v: eval:paste_clipboard
+URxvt.keysym.Control-Up: eval:scroll_up 10
+URxvt.keysym.Control-Down: eval:scroll_down 10

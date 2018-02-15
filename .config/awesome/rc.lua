@@ -81,7 +81,7 @@ arr9:set_image(beautiful.arr9)
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+modkey = "Control"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -487,3 +487,5 @@ end)
 
 -- {{ Turn on opacity support w/ compmgr
 awful.util.spawn_with_shell("xcompmgr -f -c -s")
+
+awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")

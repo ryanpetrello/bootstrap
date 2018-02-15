@@ -144,9 +144,15 @@ sub key_press {
 			if (lc($key) eq 'y') {
 				$self->selection_beg(1, 0);
 				$self->selection_end(1, 0);
+				open(CLIPBOARD, "| xsel -ib");
+				my $sel = $self->selection();
+				utf8::encode($sel);
+				print CLIPBOARD $sel;
+				close(CLIPBOARD);
 				$self->{select} = '';
 				status_area($self);
 				$self->want_refresh();
+				$quit = 1;
 			} else {
 				$quit = 1;
 			}
