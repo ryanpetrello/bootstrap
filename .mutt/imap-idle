@@ -12,10 +12,10 @@ while true; do
   doalarm 120 /usr/bin/offlineimap -a Ryan & pid1=$!
   doalarm 300 /usr/bin/offlineimap -a RH & pid2=$!
   wait $pid1
-  /usr/local/notmuch new
-  /usr/local/notmuch tag -new -- tag:new
+  /usr/bin/notmuch new
+  /usr/bin/notmuch tag -new -- tag:new
   wait $pid2
-  /usr/local/notmuch new
-  /usr/local/notmuch tag -new -- tag:new
+  /usr/bin/notmuch new
+  /usr/bin/notmuch tag -new -- tag:new
 
 done

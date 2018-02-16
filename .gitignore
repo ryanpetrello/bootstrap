@@ -12,9 +12,7 @@
 !/.gitmodules
 !/.gittemplates
 !/.ackrc
-!/.config*
 !/.mutt*
-!/.passwd*
 .mutt/error.log
 !/.offlineimaprc
 !/.pip*

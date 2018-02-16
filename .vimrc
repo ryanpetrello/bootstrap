@@ -93,10 +93,6 @@ autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 so
 autocmd BufNewFile,BufRead *.scss setlocal ft=scss
 autocmd FileType scss setlocal noexpandtab
 
-" Show tabs visually
-set list
-set list lcs=trail:•,tab:≫ 
-
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,with,try,except,finally,def,class
 
 " When editing an email, go to the first line and auto-insert

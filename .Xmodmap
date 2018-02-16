@@ -1,3 +1,6 @@
-remove mod4 = Super_L
-keysym Super_L = Control_L
-add Control = Control_L
+clear control
+clear mod1
+keycode 37 = Alt_L Meta_L
+keycode 64 = Control_L
+add control = Control_L Control_R
+add mod1 = Alt_L Meta_L

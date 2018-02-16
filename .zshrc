@@ -23,6 +23,7 @@ alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias vpnup='sudo systemctl start openvpn-client@rdu'
 alias vpndown='sudo systemctl stop openvpn-client@rdu'
+alias ack='rg'
 
 export LESS=FRSXQ
 
