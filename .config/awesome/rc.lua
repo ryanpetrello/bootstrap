@@ -319,7 +319,6 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey}, "x", awesome.quit),
 
     awful.key({ modkey,           }, "i",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "u",     function () awful.tag.incmwfact(-0.05)    end),
@@ -346,7 +345,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"    }, "Down",     function () awful.client.incwfact( 0.10)    end),
     awful.key({ modkey, "Shift"    }, "Up",     function () awful.client.incwfact(-0.10)    end),
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey,           }, "w",      function (c) c:kill()                         end)
+    awful.key({ modkey,           }, "q",      function (c) c:kill()                         end)
 )
 
 -- Bind all key numbers to tags.
