@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/colorsupport.vim"]
 	path = .vim/bundle/colorsupport.vim
 	url = https://github.com/vim-scripts/colorsupport.vim
+[submodule ".zsh/zsh-history-substring-search"]
+	path = .zsh/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search.git

@@ -4,6 +4,9 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 # zsh vim mode
 set -o vi
 
+# vim text object support
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+
 # import private aliases
 if [ -f ~/.alias ]; then
    source ~/.alias
@@ -46,7 +49,7 @@ export ACK_COLOR_MATCH='red'
 
 # virtualenvwrapper settings
 export WORKON_HOME=~/venvs
-VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
+VIRTUALENVWRAPPER=/usr/bin/virtualenvwrapper.sh
 if [[ -f $VIRTUALENVWRAPPER ]]; then
     source $VIRTUALENVWRAPPER
 fi
@@ -79,6 +82,9 @@ fg_lblue=%{$'\e[0;34m'%}
 fg_lgreen=%{$'\e[1;32m'%}
 fg_yellow=%{$'\e[1;33m'%}
 fg_white=%{$'\e[1;37m'%}
+
+# I wish py.test did this by default...
+alias py.test="py.test --tb=short"
 
 setopt auto_menu
 setopt complete_in_word
@@ -178,6 +184,11 @@ zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=(
 "'$highlights'" )'
 unset highlights
 
+# bind UP and DOWN arrow keys (compatibility fallback
+# # for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f ~/google-cloud-sdk/path.zsh.inc ]; then
   source ~/google-cloud-sdk/path.zsh.inc
@@ -190,6 +201,8 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
+export GPG_TTY=$(tty)
 
 # startx at login
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
